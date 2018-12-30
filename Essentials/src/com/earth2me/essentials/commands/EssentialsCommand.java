@@ -120,6 +120,10 @@ public abstract class EssentialsCommand implements IEssentialsCommand {
 
             if (getHidden || canInteractWith(sourceUser, user)) {
                 return user;
+            } else { // getting hidden yet can't interact -> only when exact match
+            	if (getOffline && user.getName().equalsIgnoreCase(searchTerm)) {
+            		return user;
+            	}
             }
             throw new PlayerNotFoundException();
         }
